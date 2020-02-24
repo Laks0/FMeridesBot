@@ -1,3 +1,6 @@
+from secrets import *
+import tweepy
+
 import wikipedia
 import random
 from datetime import date
@@ -27,4 +30,10 @@ for i, a in enumerate(table):
 
 rAcont = table[random.randint(nAcont + 1, fAcont)].split(":")
 txt = "Un día como hoy en " + rAcont[0] + rAcont[1]
-print(txt)
+
+# Bot
+auth = tweepy.OAuthHandler(C_KEY, C_SECRET)  
+auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)  
+api = tweepy.API(auth)
+
+api.update_status(txt)
